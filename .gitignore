@@ -6,3 +6,8 @@ dist/
 .DS_Store
 .vscode/
 .idea/
+.wrangler/
+.test-build/
+.dev.vars*
+test-results/
+playwright-report/

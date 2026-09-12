@@ -1,0 +1,15 @@
+name = "book2film-canary"
+main = "worker.mjs"
+compatibility_date = "2024-03-20"
+
+[vars]
+CANARY_ENABLED = "true"
+CANARY_ALLOWED_EMAILS = "operator@book2film.cc"
+
+[[services]]
+binding = "OCR_SERVICE"
+service = "weyland-ocr-worker"
+
+[[services]]
+binding = "FILMLINE_VIDEO"
+service = "filmline-video-worker"

@@ -1,0 +1,36 @@
+name = "book2film-studio-canary"
+main = "worker/index.js"
+compatibility_date = "2026-08-27"
+workers_dev = false
+preview_urls = false
+
+[assets]
+directory = "./dist"
+binding = "ASSETS"
+not_found_handling = "single-page-application"
+run_worker_first = ["/api/*"]
+
+[vars]
+CANARY_ENABLED = "false"
+CANARY_ALLOWED_EMAILS = ""
+
+[[d1_databases]]
+binding = "DB"
+database_name = "book2film-studio"
+# Deliberately not provisioned or routed to production.
+database_id = "00000000-0000-0000-0000-000000000000"
+migrations_dir = "migrations"
+
+[[r2_buckets]]
+binding = "MANUSCRIPTS"
+bucket_name = "book2film-private-manuscripts"
+
+[[services]]
+binding = "OCR_SERVICE"
+service = "weyland-ocr-worker"
+[[services]]
+binding = "LLM_CORTEX"
+service = "book2film-qwen-bridge"
+[[services]]
+binding = "FILMLINE_VIDEO"
+service = "filmline-video-worker"
