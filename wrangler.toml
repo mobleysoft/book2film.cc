@@ -1,7 +1,11 @@
 name = "book2film-studio-canary"
 main = "worker/index.js"
 compatibility_date = "2026-08-27"
-workers_dev = false
+# Staging-only, matching conseiv.com's 2026-09-14 precedent: real workers_dev
+# subdomain for live verification, no production route on book2film.cc yet -
+# that's a deliberate, separate decision (see ventures.json evidence), not
+# an oversight. CANARY_ENABLED stays false for the same reason.
+workers_dev = true
 preview_urls = false
 
 [assets]
@@ -17,8 +21,10 @@ CANARY_ALLOWED_EMAILS = ""
 [[d1_databases]]
 binding = "DB"
 database_name = "book2film-studio"
-# Deliberately not provisioned or routed to production.
-database_id = "00000000-0000-0000-0000-000000000000"
+# Provisioned 2026-09-14 (depth-build pass) via `wrangler d1 create` in the
+# real johnmobley99 Cloudflare account. Not yet in production traffic - see
+# workers_dev above, used only for staging live-verification.
+database_id = "b07cf80d-26b2-4b6e-835c-66755617a8ee"
 migrations_dir = "migrations"
 
 [[r2_buckets]]
